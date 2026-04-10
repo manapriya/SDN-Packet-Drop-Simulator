@@ -65,11 +65,24 @@ dpctl dump-flows
 
 Screenshots included:
 
-* Ping results
-* Blocked traffic
-* iperf output
-* Flow table
-* Controller logs
+### 1. POX Controller Output
+![POX Output](screenshots/pox.png)
+
+Shows the controller running and dropping packets based on firewall rules.
+
+---
+
+### 2. Ping Test (h1 → h2)
+![Ping Test](screenshots/pingh1h2.png)
+
+Indicates packet loss due to applied drop rules.
+
+---
+
+### 3. Flow Table Entries
+![Flow Table](screenshots/flow.png)
+
+Displays flow rules installed in the switch.
 
 
 
