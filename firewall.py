@@ -10,12 +10,12 @@ def _handle_PacketIn(event):
     packet = event.parsed
     ip = packet.find('ipv4')
 
-    # 🎯 RANDOM PACKET DROP (ALWAYS ACTIVE)
+    #  RANDOM PACKET DROP (ALWAYS ACTIVE)
     if random.random() < DROP_PROBABILITY:
         log.info("Packet DROPPED")
         return
 
-    # 🎯 BLOCK h3 → h1 (flow rule)
+    #  BLOCK h3 → h1 (flow rule)
     if ip:
         if str(ip.srcip) == "10.0.0.3" and str(ip.dstip) == "10.0.0.1":
             log.info("Installing BLOCK rule")
@@ -30,7 +30,7 @@ def _handle_PacketIn(event):
             event.connection.send(msg)
             return
 
-    # 🎯 FORWARD WITHOUT INSTALLING FLOW (IMPORTANT)
+    # FORWARD WITHOUT INSTALLING FLOW (IMPORTANT)
     msg = of.ofp_packet_out()
     msg.data = event.ofp
     msg.actions.append(of.ofp_action_output(port=of.OFPP_FLOOD))
